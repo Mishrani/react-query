@@ -7,12 +7,12 @@ const fetchSuperHeroes = async () => {
 };
 
 const RQSuperHeroes = () => {
-  // const onSuccess = () => {
-  //   console.log('Success');
-  // }
-  // const onError = () => {
-  //   console.log('Error');
-  // }
+  const onSuccess = () => {
+    console.log('Success');
+  }
+  const onError = () => {
+    console.log('Error');
+  }
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     'superheroes',
     fetchSuperHeroes,
@@ -23,9 +23,9 @@ const RQSuperHeroes = () => {
       // refetchOnWindowFocus: true/false/always
       // refetchInterval: false/value in milliseconds
       //refetchInteralInBackground
-      enabled: false,
-      // onSuccess: onSuccess,
-      // onError: onError
+      // enabled: false,
+      onSuccess: onSuccess,
+      onError: onError
     }
   );
 
@@ -40,7 +40,7 @@ const RQSuperHeroes = () => {
 
   return (
     <>
-    <button onClick={refetch}>Fetch</button>
+    {/* <button onClick={refetch}>Fetch</button> */}
       <h2>RQ Super Heroes</h2>
 
         {data && data.map((hero) => (
