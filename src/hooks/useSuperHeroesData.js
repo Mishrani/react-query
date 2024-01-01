@@ -17,10 +17,10 @@ export const useSuperHeroesData = (onSuccess, onError) => {
     // enabled: false,
     onSuccess,
     onError,
-    select: (data) => {
-      const superHeroNames = data.map((hero) => hero.name);
-      console.log('superHeroNames', superHeroNames);
-      return superHeroNames;
-    }
+    // select: (data) => {
+    //   const superHeroNames = data.map((hero) => hero.name);
+    //   console.log('superHeroNames', superHeroNames);
+    //   return superHeroNames;
+    // }
   });
 };
