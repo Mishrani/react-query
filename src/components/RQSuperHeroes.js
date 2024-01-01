@@ -7,11 +7,11 @@ const fetchSuperHeroes = async () => {
 };
 
 const RQSuperHeroes = () => {
-  const onSuccess = () => {
-    console.log('Success');
+  const onSuccess = (data) => {
+    console.log('Success', data);
   }
-  const onError = () => {
-    console.log('Error');
+  const onError = (error) => {
+    console.log('Error', error);
   }
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     'superheroes',
