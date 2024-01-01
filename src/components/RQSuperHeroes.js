@@ -3,14 +3,34 @@ import axios from 'axios';
 
 const fetchSuperHeroes = async () => {
   const response = await axios.get('http://localhost:4000/superheroes');
-  return response?.data; 
+  return response?.data;
 };
 
 const RQSuperHeroes = () => {
+  // const onSuccess = () => {
+  //   console.log('Success');
+  // }
+  // const onError = () => {
+  //   console.log('Error');
+  // }
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
+    'superheroes',
+    fetchSuperHeroes,
+    { 
+      // cacheTime: 5000
+      // staleTime: 30000
+      // refetchOnMount: true/false/always
+      // refetchOnWindowFocus: true/false/always
+      // refetchInterval: false/value in milliseconds
+      //refetchInteralInBackground
+      enabled: false,
+      // onSuccess: onSuccess,
+      // onError: onError
+    }
+  );
 
-  const { isLoading, data, isError, error } = useQuery('superheroes', fetchSuperHeroes);
-
-  if (isLoading) {
+  console.log({ isLoading, isFetching });
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
   }
 
@@ -20,11 +40,12 @@ const RQSuperHeroes = () => {
 
   return (
     <>
-      <h2>
-        {data.map((hero) => (
+    <button onClick={refetch}>Fetch</button>
+      <h2>RQ Super Heroes</h2>
+
+        {data && data.map((hero) => (
           <div key={hero.name}>{hero.name}</div>
         ))}
-      </h2>
     </>
   );
 };
